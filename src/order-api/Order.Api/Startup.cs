@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Order.Api.Infrastructure;
 
 namespace Order.Api
 {
@@ -13,6 +14,9 @@ namespace Order.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<FakeContext, FakeContext>();
+
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -22,10 +26,7 @@ namespace Order.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.UseMvc();
         }
     }
 }
