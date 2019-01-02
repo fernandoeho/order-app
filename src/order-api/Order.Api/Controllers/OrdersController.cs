@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Order.Api.Controllers.ViewModels;
 using Order.Api.Infrastructure;
+using Order.Api.Models;
 using Order.Api.Models.Enums;
 
 namespace Order.Api.Controllers
@@ -21,23 +22,28 @@ namespace Order.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Get works!");
+            return Ok(_context.Meals);
         }
 
         [HttpPost]
         public IActionResult Post([FromBody]InputViewModel inputViewModel)
         {
-            var array = inputViewModel.Input.Split(",");
-
-            ETimeOfDay timeOfDay;
-            Enum.TryParse(array[0], true, out timeOfDay);
-
-            foreach (string x in array.Skip(1))
+            try
             {
-                var dish = _context.Dishes.Where(d => d.TimeOfDay == timeOfDay && d.Type == (EDishType)Convert.ToInt16(x));
-            }
+                if (!ModelState.IsValid)
+                    return BadRequest();
 
-            return Ok();
+                var meal = Meal.Create(inputViewModel.Input, _context.Dishes.ToList());
+
+                _context.Meals.Add(meal);
+                _context.SaveChanges();
+
+                return Ok(meal);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

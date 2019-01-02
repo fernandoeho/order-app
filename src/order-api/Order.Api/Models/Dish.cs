@@ -5,18 +5,20 @@ namespace Order.Api.Models
 {
     public class Dish
     {
-        public Dish(Guid id, string name, EDishType type, ETimeOfDay timeOfDay)
+        public Dish(Guid id, string name, EDishType type, ETimeOfDay timeOfDay, bool multipleOrders)
         {
             Id = id;
             Name = name;
             Type = type;
             TimeOfDay = timeOfDay;
+            MultipleOrders = multipleOrders;
         }
 
         public Guid Id { get; private set; }
         public string Name { get; private set; }
         public EDishType Type { get; private set; }
         public ETimeOfDay TimeOfDay { get; private set; }
+        public bool MultipleOrders { get; private set; }
 
         public override string ToString()
         {
