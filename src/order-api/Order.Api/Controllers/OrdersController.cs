@@ -20,7 +20,7 @@ namespace Order.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             return Ok(_context.Meals);
         }

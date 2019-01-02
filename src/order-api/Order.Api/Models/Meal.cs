@@ -28,6 +28,9 @@ namespace Order.Api.Models
 
             var groups = inputArray.Skip(1).OrderBy(x => x).GroupBy(x => x);
 
+            if (groups.Count() == 0)
+                throw new Exception($"Please inform a dish");
+
             var validDishes = dishes.Where(d => d.TimeOfDay == timeOfDay);
 
             List<string> listOutput = new List<string>();

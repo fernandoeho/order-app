@@ -52,7 +52,7 @@ namespace Order.UnitTest.Application
         {
             // Act
             var ordersController = new OrdersController(_contextMock.Object);
-            var actionResult = ordersController.Get() as OkObjectResult;
+            var actionResult = ordersController.GetAll() as OkObjectResult;
 
             // Assert
             Assert.Equal(actionResult.StatusCode, (int)HttpStatusCode.OK);
@@ -78,6 +78,20 @@ namespace Order.UnitTest.Application
         {
             // Arrange
             InputViewModel inputViewModel = new InputViewModel { Input = "afternoon, 1, 2, 3" };
+
+            // Act
+            var ordersController = new OrdersController(_contextMock.Object);
+            var actionResult = ordersController.Post(inputViewModel) as BadRequestObjectResult;
+
+            // Assert
+            Assert.Equal(actionResult.StatusCode, (int)HttpStatusCode.BadRequest);
+        }
+
+        [Fact]
+        public void Post_Order_InvalidDishes_BadRequest()
+        {
+            // Arrange
+            InputViewModel inputViewModel = new InputViewModel { Input = "morning" };
 
             // Act
             var ordersController = new OrdersController(_contextMock.Object);
