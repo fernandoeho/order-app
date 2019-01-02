@@ -3,8 +3,10 @@
 ## Tecnologias
 
 - [.NET Core 2.1](https://www.microsoft.com/net/download) - Web Framework
-- [Docker](https://www.docker.com/) - Containers/Virtualization
-- [Sqlite] - Banco de dados (arquivo do banco está presente na raiz do projeto da Api(OrderApp.db))
+- [Entity Framework Core 2.1](https://docs.microsoft.com/en-us/ef/core/) - ORM
+- [Sqlite](https://www.sqlite.org/index.html) - Banco de dados (arquivo do banco está presente na raiz do projeto da Api(OrderApp.db))
+- [XUnit](https://xunit.github.io/) - Testes
+- [React](https://reactjs.org/) - JavaScript Framework
 
 ## Como começar
 
