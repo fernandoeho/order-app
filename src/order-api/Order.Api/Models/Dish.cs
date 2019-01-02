@@ -5,13 +5,15 @@ namespace Order.Api.Models
 {
     public class Dish
     {
-        public Dish(string name, EDishType type, ETimeOfDay timeOfDay)
+        public Dish(Guid id, string name, EDishType type, ETimeOfDay timeOfDay)
         {
+            Id = id;
             Name = name;
             Type = type;
             TimeOfDay = timeOfDay;
         }
 
+        public Guid Id { get; private set; }
         public string Name { get; private set; }
         public EDishType Type { get; private set; }
         public ETimeOfDay TimeOfDay { get; private set; }

@@ -6,9 +6,9 @@ namespace Order.Api.Controllers
     [Route("api/[controller]")]
     public class DishesController : Controller
     {
-        private readonly FakeContext _context;
+        private readonly OrderContext _context;
 
-        public DishesController(FakeContext context)
+        public DishesController(OrderContext context)
         {
             _context = context;
         }
