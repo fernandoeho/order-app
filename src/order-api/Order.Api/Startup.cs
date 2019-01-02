@@ -29,6 +29,8 @@ namespace Order.Api
 
             services.AddDbContext<OrderContext>(options => options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddCors();
+
             services.AddMvc();
         }
 
@@ -38,6 +40,10 @@ namespace Order.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
+            );
 
             app.UseMvc();
         }
