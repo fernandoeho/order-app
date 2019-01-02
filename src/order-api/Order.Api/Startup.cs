@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Order.Api.Infrastructure;
+using Order.Api.Infrastructure.Repositories;
 
 namespace Order.Api
 {
@@ -23,6 +24,9 @@ namespace Order.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDishRepository, DishRepository>();
+            services.AddScoped<IMealRepository, MealRepository>();
+
             services.AddDbContext<OrderContext>(options => options.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
