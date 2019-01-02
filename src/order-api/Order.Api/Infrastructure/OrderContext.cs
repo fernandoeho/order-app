@@ -10,8 +10,10 @@ namespace Order.Api.Infrastructure
         public OrderContext(DbContextOptions<OrderContext> options)
             : base(options) { }
 
-        public DbSet<Dish> Dishes { get; set; }
-        public DbSet<Meal> Meals { get; set; }
+        public OrderContext() { }
+
+        public virtual DbSet<Dish> Dishes { get; set; }
+        public virtual DbSet<Meal> Meals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
